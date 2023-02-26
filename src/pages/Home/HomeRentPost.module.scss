@@ -1,0 +1,10 @@
+.homeRentPostContainer {
+  max-height: 90vh;
+  overflow-y: scroll;
+  scrollbar-width: none; /* hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* hide scrollbar for IE and Edge */
+}
+
+.homeRentPostContainer::-webkit-scrollbar {
+  width: 0px; /* hide scrollbar for Chrome, Safari, and Opera */
+}

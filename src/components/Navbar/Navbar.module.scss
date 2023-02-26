@@ -1,0 +1,46 @@
+.navbarContainer {
+  height: 70px;
+  background-color: black;
+  color: white;
+
+  ul {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-align: center;
+    line-height: 70px;
+    text-decoration: none;
+    list-style-type: none;
+
+    li {
+      list-style-type: none;
+      margin-right: 25px;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.buttonContainer {
+  cursor: pointer;
+  .loginOption {
+    font-weight: bold;
+  }
+  .loginOptionActive {
+    border-bottom: 2px solid salmon;
+    font-weight: bold;
+  }
+  .registrationOption {
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  .registrationOptionActive {
+    border-bottom: 2px solid salmon;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+}
+
+.componentContainer {
+  margin-top: 10px;
+}
