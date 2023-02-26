@@ -1,0 +1,41 @@
+.subscriberSidebar {
+  height: 100vh;
+  background-color: black;
+  color: white;
+
+  .sideBarList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+
+    
+    ul{
+
+      line-height: 35px;
+      text-decoration: none;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li{
+          list-style-type: none;
+          color: white;
+          text-decoration: none;
+         
+      }
+
+  }
+
+    .logoutButton{
+        background-color: red;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+  }
+}

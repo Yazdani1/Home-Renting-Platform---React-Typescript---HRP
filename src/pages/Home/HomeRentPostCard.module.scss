@@ -1,0 +1,92 @@
+.homeRentCardContainer {
+  position: relative;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .homeRentImage {
+    position: relative;
+    img {
+      height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  .homeRentPostItem {
+    line-height: 8px;
+    margin-top: 10px;
+  }
+
+  .nextIcon {
+    cursor: pointer;
+    p {
+      background-color: white;
+      border-radius: 50%;
+      text-align: center;
+      align-items: center;
+
+      position: absolute;
+      top: 40%;
+      right: 10%; /* adjust this value as needed */
+      transform: translate(50%, -50%);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .previousIcon {
+    cursor: pointer;
+    p {
+      background-color: white;
+      border-radius: 50%;
+      text-align: center;
+      align-items: center;
+
+      position: absolute;
+      top: 40%;
+      left: 1%; /* adjust this value as needed */
+      transform: translate(50%, -50%);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .dots {
+    position: absolute;
+    bottom: 5px; /* adjust this value as needed */
+    left: 50%;
+    top: 75%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin: 0 7px;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: yellow;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin: 0 7px;
+      cursor: pointer;
+    }
+  }
+}

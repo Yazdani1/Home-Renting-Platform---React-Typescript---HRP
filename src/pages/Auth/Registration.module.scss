@@ -1,0 +1,24 @@
+@import "../../styles/Variables.scss";
+@import "../../styles/Mixin.scss";
+
+.signInContainer {
+  // to show form card in the center
+
+  // to get margin for input field from top
+  .inputFormArea {
+    margin-top: 40px;
+
+    // to design input field
+    .formControlName {
+      @include inputFieldDesign();
+    }
+    .formControlEmail {
+      @include inputFieldDesign();
+    }
+
+    .formControlPassword {
+      @include inputFieldDesign();
+      // @extend .formControlEmail;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.profileInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .profileCircale {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: orangered;
+    margin-bottom: 10px;
+    color: white;
+  }
+}
