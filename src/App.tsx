@@ -17,6 +17,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AdminSecureLayout from "./layouts/AdminSecureLayout";
 import SubscriberPhotoLibrary from "./pages/SubscriberDashboard/SubscriberPhotoLibrary";
 import AllUserLists from "./pages/AllUserLists/AllUserLists";
+import About from "./pages/About/About";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="/listview" element={<HomeRentListView />} />
               <Route path="/mapview" element={<HomeRentPostsMapView />} />
               <Route path="/alluser-lists" element={<AllUserLists />} />
+              <Route path="/about" element={<About />} />
 
 
               {/* Protected route for subscriber*/}

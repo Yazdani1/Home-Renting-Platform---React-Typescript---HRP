@@ -73,6 +73,14 @@ const Navbar = () => {
             Members
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            to={"/about"}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            About
+          </Link>
+        </li>
 
         {userDetails?.user ? (
           <li className="nav-item">
