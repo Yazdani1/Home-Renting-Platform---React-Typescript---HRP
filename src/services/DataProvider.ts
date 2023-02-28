@@ -60,3 +60,13 @@ export enum SelectLogInRegistration {
 }
 
 
+  /****************************************/
+  /*********  Photo Library   *************/
+  /****************************************/
+
+
+  export interface PhotoLibraryProps extends IBase{
+    imageurl: string,
+    postedBy: UserProfileDetailsProps
+  }
+

@@ -1,0 +1,32 @@
+.imagePreviewList {
+  margin-top: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+  }
+}
+
+.selectedImageDesign {
+  margin-top: 10px;
+  object-fit: cover;
+  opacity: 0.5;
+  cursor: pointer;
+
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+  }
+}
+
+.singleImageView {
+  img {
+    width: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+}

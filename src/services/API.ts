@@ -41,8 +41,21 @@ export const getSingleHomeRentPost = async (slug: string) => {
   return res;
 };
 
+export const searchHomeRentPosts = async (
+  min: string,
+  max: string,
+  category: string,
+  room: string
+) => {
+  // const res = await axios.get(API_URL+`/search-home-rent?room=${room}&city=${city}&category=${category}&min=${min}&max=${max}`)
+  const res = await axios.get(
+    API_URL + `/search-home-rent?min=${min}&max=${max}&category=${category}&room=${room}`
+  );
+  return res;
+};
+
 /****************************************/
-/********* User Profile Page *************/
+/*********        sUser      ************/
 /****************************************/
 
 export const getUserProfile = async (slug: string) => {
@@ -73,5 +86,36 @@ export const getLogedInUserPosts = async () => {
 
 export const getUserRoleForAdmin = async () => {
   const res = await axios.get(API_URL + "/current-user-role", headerConfig());
+  return res;
+};
+
+/****************************************/
+/*********  Photo Library   *************/
+/****************************************/
+
+export interface CreatePhotoLibraryProps {
+  imageurl: string;
+}
+
+export const createPhotoLibrary = async (props: CreatePhotoLibraryProps) => {
+  const res = await axios.post(
+    API_URL + "/create-photo-library",
+    { ...props },
+    headerConfig()
+  );
+  return res;
+};
+
+export const getPhotoLibrary = async () => {
+  const res = await axios.get(API_URL + "/photo-library", headerConfig());
+  return res;
+};
+
+/****************************************/
+/*********  Category       *************/
+/****************************************/
+
+export const getAllCategory = async () => {
+  const res = await axios.get(API_URL + "/get-all-category");
   return res;
 };

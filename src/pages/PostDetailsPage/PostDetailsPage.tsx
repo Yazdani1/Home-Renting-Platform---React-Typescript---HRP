@@ -41,6 +41,7 @@ const PostDetailsPage = () => {
       const res = await getSingleHomeRentPost(slug!);
 
       if (res) {
+
         setHomeRentSinglePost(res.data.singleHomeRentalPost);
         setHomeRentMorePostsByCategory(res.data.morePostsByCategory);
         setHomeRentMorePostsByCity(res.data.morePostsByCity);
@@ -48,6 +49,7 @@ const PostDetailsPage = () => {
 
         setLng(res.data.singleHomeRentalPost.longitude);
         setLat(res.data.singleHomeRentalPost.latitude);
+        
       }
     } catch (error: any) {
       console.log(error);
@@ -77,6 +79,14 @@ const PostDetailsPage = () => {
     [16, 56],
   ];
 
+  // to select photo index position and show in the large single view
+
+  const [currentImage, setCurrentImage] = useState<number>(0);
+
+  const handleImageSelect = (index: number) => {
+    setCurrentImage(index);
+  };
+
   useEffect(() => {
     loadSinglePostDetails();
   }, [slug]);
@@ -86,6 +96,46 @@ const PostDetailsPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-xl-8 col-lg-8">
+            {/* //////////////////////////////////////////////////////////////////////// */}
+            {/* ////                    Photo slider                   ///////////////// */}
+            {/* //////////////////////////////////////////////////////////////////////// */}
+
+            <CardLayout>
+              <button
+                className="btn btn-danger"
+                onClick={() => window.history.back()}
+              >
+                Back
+              </button>
+              <div className="row">
+                <div className="col-xl-2 col-lg-2">
+                  {homeRentSinglePost?.photo.map((p, index: number) => (
+                    <div
+                      onMouseEnter={() => handleImageSelect(index)}
+                      className={
+                        currentImage === index
+                          ? style.selectedImageDesign
+                          : style.imagePreviewList
+                      }
+                    >
+                      <img src={p} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Single image view */}
+
+                <div className="col-xl-10 col-lg-10">
+                  <span className={style.singleImageView}>
+                    <img
+                      src={homeRentSinglePost?.photo[currentImage]}
+                      className="img-fluid"
+                    />
+                  </span>
+                </div>
+              </div>
+            </CardLayout>
+
             {/* TO show post details title and des */}
 
             <CardLayout>

@@ -1,0 +1,28 @@
+@import "../../styles/Variables.scss";
+@import "../../styles/Mixin.scss";
+
+.uploadPhotoContainer {
+  height: 150px;
+  width: 50%;
+
+  .inputPhotoULR {
+    @include inputFieldDesign();
+  }
+}
+
+
+
+.imageCard {
+
+   height: 300px;
+
+   img{
+    object-fit: cover;
+    border-radius: 10px;
+    height: 80%;
+    width: 100%;
+   }
+   button{
+    margin-top: 10px;
+   }
+}
