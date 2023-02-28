@@ -8,3 +8,37 @@
 .homeRentPostContainer::-webkit-scrollbar {
   width: 0px; /* hide scrollbar for Chrome, Safari, and Opera */
 }
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0;
+  .searchInput {
+    margin-right: 10px;
+    input {
+      border-radius: 10px;
+    }
+  }
+
+  .dropdown {
+    position: relative;
+    margin-right: 10px;
+
+    .dropdownContent {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      height: 900px;
+      width: 250px;
+      z-index: 1;
+    }
+  }
+
+  .searchButton {
+    margin-left: 10px;
+    background-color: tomato;
+    border-radius: 10px;
+  }
+}

@@ -7,6 +7,8 @@ import HomeRentPostCard from "../Home/HomeRentPostCard";
 import { HomeRentPostsProps } from "../../services/DataProvider";
 
 const HomeRentListView = () => {
+
+  // Context api. This context api has all the home rent posts
   const allHomeRentPosts = useContext<HomeRentPostsProps[]>(
     HomeRentAllPostsContext
   );
