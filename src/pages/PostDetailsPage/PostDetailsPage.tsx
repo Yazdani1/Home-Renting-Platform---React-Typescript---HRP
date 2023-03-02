@@ -8,6 +8,7 @@ import Map, {
   GeolocateControl,
 } from "react-map-gl";
 import { BsPinMapFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 import HomePageLayout from "../../layouts/HomePageLayout";
 import style from "./PostDetailsPage.module.scss";
@@ -15,6 +16,8 @@ import CardLayout from "../../components/CardLayout/CardLayout";
 import { getSingleHomeRentPost } from "../../services/API";
 import { HomeRentPostsProps } from "../../services/DataProvider";
 import HomeRentPostCard from "../Home/HomeRentPostCard";
+import SkeltonCard from "../../components/Skelton/SkeltonCard";
+import SkeltonMap from "../../components/Skelton/SkeltonMap";
 
 const PostDetailsPage = () => {
   const { slug } = useParams();
@@ -36,12 +39,14 @@ const PostDetailsPage = () => {
   const [homeRentMorePostsBySameUser, setHomeRentMorePostsBySameUser] =
     useState<HomeRentPostsProps[]>([]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const loadSinglePostDetails = async () => {
+    setIsLoading(true);
     try {
       const res = await getSingleHomeRentPost(slug!);
 
       if (res) {
-
         setHomeRentSinglePost(res.data.singleHomeRentalPost);
         setHomeRentMorePostsByCategory(res.data.morePostsByCategory);
         setHomeRentMorePostsByCity(res.data.morePostsByCity);
@@ -49,10 +54,14 @@ const PostDetailsPage = () => {
 
         setLng(res.data.singleHomeRentalPost.longitude);
         setLat(res.data.singleHomeRentalPost.latitude);
-        
+
+        setIsLoading(false);
       }
     } catch (error: any) {
-      console.log(error);
+      toast.error(error.response && error.response.data.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setIsLoading(false);
     }
   };
 
@@ -100,56 +109,69 @@ const PostDetailsPage = () => {
             {/* ////                    Photo slider                   ///////////////// */}
             {/* //////////////////////////////////////////////////////////////////////// */}
 
-            <CardLayout>
-              <button
-                className="btn btn-danger"
-                onClick={() => window.history.back()}
-              >
-                Back
-              </button>
-              <div className="row">
-                <div className="col-xl-2 col-lg-2">
-                  {homeRentSinglePost?.photo.map((p, index: number) => (
-                    <div
-                      onMouseEnter={() => handleImageSelect(index)}
-                      className={
-                        currentImage === index
-                          ? style.selectedImageDesign
-                          : style.imagePreviewList
-                      }
-                    >
-                      <img src={p} />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Single image view */}
-
-                <div className="col-xl-10 col-lg-10">
-                  <span className={style.singleImageView}>
-                    <img
-                      src={homeRentSinglePost?.photo[currentImage]}
-                      className="img-fluid"
-                    />
-                  </span>
-                </div>
+            {isLoading && (
+              <div>
+                <SkeltonMap />
               </div>
-            </CardLayout>
+            )}
+
+            {!isLoading && (
+              <CardLayout>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => window.history.back()}
+                >
+                  Back
+                </button>
+                <div className="row">
+                  <div className="col-xl-2 col-lg-2">
+                    {homeRentSinglePost?.photo.map((p, index: number) => (
+                      <div
+                        onMouseEnter={() => handleImageSelect(index)}
+                        className={
+                          currentImage === index
+                            ? style.selectedImageDesign
+                            : style.imagePreviewList
+                        }
+                      >
+                        <img src={p} />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Single image view */}
+
+                  <div className="col-xl-10 col-lg-10">
+                    <div className={style.singleImageView}>
+                      <img
+                        src={homeRentSinglePost?.photo[currentImage]}
+                        className="img-fluid"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </CardLayout>
+            )}
 
             {/* TO show post details title and des */}
 
-            <CardLayout>
-              <h5> {homeRentSinglePost?.title}</h5>
-              <p>{homeRentSinglePost?.des}</p>
-            </CardLayout>
+            {!isLoading && (
+              <CardLayout>
+                <h5> {homeRentSinglePost?.title}</h5>
+                <p>{homeRentSinglePost?.des}</p>
+              </CardLayout>
+            )}
 
             {/* TO show post details info */}
 
-            <CardLayout>
-              <h5> City:{homeRentSinglePost?.city}</h5>
-              <p>Rooms:{homeRentSinglePost?.rooms}</p>
-              <p>Rent:{homeRentSinglePost?.rentAmount}.Eur Per-Month</p>
-            </CardLayout>
+            {!isLoading && (
+              <CardLayout>
+                <h5> City:{homeRentSinglePost?.city}</h5>
+                <h6>Rooms:{homeRentSinglePost?.rooms}</h6>
+                <h6>Rent:{homeRentSinglePost?.rentAmount}.Eur</h6>
+                <h6>{homeRentSinglePost?.categoryBy.categoryName}</h6>
+              </CardLayout>
+            )}
 
             {/* //////////////////////////////////////////////////////////////////////// */}
             {/* ////                       To show Map Marker                   /////// */}
@@ -240,14 +262,23 @@ const PostDetailsPage = () => {
           {/* To show posts based on the single post category */}
 
           <div className="col-xl-4 col-lg-4">
-            <div className="row">
-              {homeRentMorePostsByCategory &&
-                homeRentMorePostsByCategory.map((item) => (
-                  <div className="col-xl-8 col-lg-8">
-                    <HomeRentPostCard homerental_post={item} />
-                  </div>
-                ))}
-            </div>
+            {/* To show skelton  */}
+            {isLoading && (
+              <div className="row">
+                <SkeltonCard />
+              </div>
+            )}
+
+            {!isLoading && (
+              <div className="row">
+                {homeRentMorePostsByCategory &&
+                  homeRentMorePostsByCategory.map((item) => (
+                    <div className="col-xl-8 col-lg-8">
+                      <HomeRentPostCard homerental_post={item} />
+                    </div>
+                  ))}
+              </div>
+            )}
 
             {/* <div className="row">
               {homeRentMorePostsByCity &&

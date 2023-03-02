@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useState, useContext } from "react";
+import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 
 import style from "./LogIn.module.scss";

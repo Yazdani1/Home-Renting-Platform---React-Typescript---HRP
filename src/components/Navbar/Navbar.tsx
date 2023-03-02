@@ -40,6 +40,7 @@ const Navbar = () => {
 
   return (
     <nav className={style.navbarContainer}>
+      <span className={style.siteTitle}>Home Rental Platform</span>
       <ul>
         <li className="nav-item">
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
@@ -73,14 +74,14 @@ const Navbar = () => {
             Members
           </Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link
             to={"/about"}
             style={{ textDecoration: "none", color: "white" }}
           >
             About
           </Link>
-        </li>
+        </li> */}
 
         {userDetails?.user ? (
           <li className="nav-item">
@@ -92,8 +93,8 @@ const Navbar = () => {
             </Link>
           </li>
         ) : (
-          <li className="nav-item" onClick={handleOpenModal}>
-            Log In
+          <li className={style.joinNowLinkDesign} onClick={handleOpenModal}>
+            Join Now
           </li>
         )}
       </ul>

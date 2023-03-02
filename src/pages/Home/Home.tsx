@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-import axios from "axios";
 
 import HomePageLayout from "../../layouts/HomePageLayout";
 import style from "./HomeRentPost.module.scss";
@@ -11,6 +10,7 @@ import { CategoryContext } from "../../contextapi/CategoryContext";
 import { searchHomeRentPosts, getAllHomeRentPosts } from "../../services/API";
 import CardLayout from "../../components/CardLayout/CardLayout";
 import { HomeRentPostsProps, CategoryProps } from "../../services/DataProvider";
+import SkeltonMap from "../../components/Skelton/SkeltonMap";
 
 const Home = () => {
   /****************************************/
@@ -31,7 +31,6 @@ const Home = () => {
   // To select and deselect category from checkbox to search
 
   const [categoryId, setCategoryId] = useState<any>([]);
-  // to select and remove category id from check box
 
   const selectCatId = (catid: string) => {
     const selectedCateogryID = [...categoryId];
@@ -82,7 +81,17 @@ const Home = () => {
 
   useEffect(() => {
     searhPosts();
-  }, [min, max,rooms]);
+  }, [min, max, rooms]);
+
+  // To show the loading skelton if data is not loaded yet
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (allHomeRentPosts && allHomeRentPosts.length > 0) {
+      setIsLoading(false);
+    }
+  }, [allHomeRentPosts]);
 
   return (
     <HomePageLayout>
@@ -91,7 +100,8 @@ const Home = () => {
       {/* //////////////////////////////////////////////////////////////////////// */}
 
       <div className="container">
-        <CardLayout>
+        {/* <CardLayout>
+
           <div className={style.searchContainer}>
             <div className={style.searchInput}>
               <input
@@ -160,12 +170,13 @@ const Home = () => {
               )}
             </div>
 
-
             <button className="btn btn-success" onClick={searhPosts}>
               Search
             </button>
           </div>
+
         </CardLayout>
+         */}
       </div>
 
       <div className="row">
@@ -186,18 +197,31 @@ const Home = () => {
             />
           </div>
         </div>
+
         {/* //////////////////////////////////////////////////////////////////////// */}
         {/* ////                       To show map posts              ////////////// */}
         {/* //////////////////////////////////////////////////////////////////////// */}
 
         <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-          <LocationMap
-            homeRentalLocation={
-              searchedValueHomeRent.length > 0
-                ? searchedValueHomeRent
-                : allHomeRentPosts
-            }
-          />
+          {/* //////////////////////////////////////////////////////////////////////// */}
+          {/* ////                       To show skelton                   /////////// */}
+          {/* //////////////////////////////////////////////////////////////////////// */}
+
+          {isLoading && (
+            <div>
+              <SkeltonMap />
+            </div>
+          )}
+
+          {!isLoading && (
+            <LocationMap
+              homeRentalLocation={
+                searchedValueHomeRent.length > 0
+                  ? searchedValueHomeRent
+                  : allHomeRentPosts
+              }
+            />
+          )}
         </div>
       </div>
     </HomePageLayout>
