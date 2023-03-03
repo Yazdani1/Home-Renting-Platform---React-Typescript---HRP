@@ -179,7 +179,8 @@ const PostDetailsPage = () => {
 
             <CardLayout>
               <Map
-                mapboxAccessToken="pk.eyJ1IjoieWF6ZGFuaTExIiwiYSI6ImNsZHhpM2lhbDBnemIzcW52ejg0ejJ2bjAifQ.2NW_EeCxlel8wvBzyjybVQ"
+                mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+                // mapboxAccessToken="pk.eyJ1IjoieWF6ZGFuaTExIiwiYSI6ImNsZHhpM2lhbDBnemIzcW52ejg0ejJ2bjAifQ.2NW_EeCxlel8wvBzyjybVQ"
                 style={{
                   width: "auto",
                   height: "400px",
