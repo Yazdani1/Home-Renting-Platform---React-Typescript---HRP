@@ -28,3 +28,7 @@ const About = () => {
 };
 
 export default About;
+
+// ">0.2%",
+// "not dead",
+// "not op_mini all"
