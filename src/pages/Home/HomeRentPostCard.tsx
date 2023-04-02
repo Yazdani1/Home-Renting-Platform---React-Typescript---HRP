@@ -58,17 +58,17 @@ const HomeRentPostCard: FC<HomeRentPostCardProps> = ({ homerental_post }) => {
         <img src={homerental_post.photo[imageIndex]} className="img-fluid" />
       </span>
 
+      <div className={style.dots}>
+        {homerental_post.photo.map((_, index) => (
+          <span
+            key={index}
+            className={index === imageIndex ? style.active : style.dot}
+          ></span>
+        ))}
+      </div>
+
       {showIcon && (
         <>
-          <div className={style.dots}>
-            {homerental_post.photo.map((_, index) => (
-              <span
-                key={index}
-                className={index === imageIndex ? style.active : style.dot}
-              ></span>
-            ))}
-          </div>
-
           <span className={style.nextIcon} onClick={handleNextImage}>
             <p>
               <MdOutlineNavigateNext size={25} />

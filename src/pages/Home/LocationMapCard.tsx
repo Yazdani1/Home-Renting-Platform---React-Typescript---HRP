@@ -118,20 +118,18 @@ const LocationMapCard: FC<LocationMapCardProps> = ({
                     className="img-fluid"
                   />
                 </span>
-
+                <div className={style.dots}>
+                  {selectedMarker.photo.map((_: any, index: any) => (
+                    <span
+                      key={index}
+                      className={
+                        index === imageIndex ? style.active : style.dot
+                      }
+                    ></span>
+                  ))}
+                </div>
                 {showIcon && (
                   <>
-                    <div className={style.dots}>
-                      {selectedMarker.photo.map((_: any, index: any) => (
-                        <span
-                          key={index}
-                          className={
-                            index === imageIndex ? style.active : style.dot
-                          }
-                        ></span>
-                      ))}
-                    </div>
-
                     <span className={style.nextIcon} onClick={handleNextImage}>
                       <p>
                         <MdOutlineNavigateNext size={25} />

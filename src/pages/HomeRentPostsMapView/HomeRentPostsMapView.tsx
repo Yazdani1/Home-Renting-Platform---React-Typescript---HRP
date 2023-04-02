@@ -6,13 +6,13 @@ import Map, {
 } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+
 import HomePageLayout from "../../layouts/HomePageLayout";
 import { HomeRentAllPostsContext } from "../../contextapi/HomeRentAllPostsContext";
 import { HomeRentPostsProps } from "../../services/DataProvider";
 import LocationMapCard from "../Home/LocationMapCard";
 
 const HomeRentPostsMapView = () => {
-  
   const allHomeRentPosts = useContext<HomeRentPostsProps[]>(
     HomeRentAllPostsContext
   );
@@ -25,7 +25,7 @@ const HomeRentPostsMapView = () => {
   return (
     <HomePageLayout>
       <Map
-        mapboxAccessToken="pk.eyJ1IjoieWF6ZGFuaTExIiwiYSI6ImNsZHhpM2lhbDBnemIzcW52ejg0ejJ2bjAifQ.2NW_EeCxlel8wvBzyjybVQ"
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         style={{
           height: "90vh",
           borderRadius: "10px",
