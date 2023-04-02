@@ -93,6 +93,14 @@ const Home = () => {
     }
   }, [allHomeRentPosts]);
 
+  /**
+   * To add tab title for this page
+   */
+
+  useEffect(() => {
+    document.title = `Home Rental Platform`;
+  }, []);
+
   return (
     <HomePageLayout>
       {/* //////////////////////////////////////////////////////////////////////// */}

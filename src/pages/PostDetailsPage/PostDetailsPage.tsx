@@ -9,6 +9,11 @@ import Map, {
 } from "react-map-gl";
 import { BsPinMapFill } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { FaCity } from "react-icons/fa";
+import { SiHomeadvisor } from "react-icons/si";
+import { RiMoneyEuroCircleFill } from "react-icons/ri";
+import { BiCategoryAlt } from "react-icons/bi";
+import moment from "moment";
 
 import HomePageLayout from "../../layouts/HomePageLayout";
 import style from "./PostDetailsPage.module.scss";
@@ -100,14 +105,13 @@ const PostDetailsPage = () => {
     loadSinglePostDetails();
   }, [slug]);
 
-    /**
+  /**
    * This use effect is showing slug name in the browser tab one user move to the detials page
    */
 
   useEffect(() => {
     document.title = `${slug}`;
   }, [slug]);
-
 
   return (
     <HomePageLayout>
@@ -162,23 +166,70 @@ const PostDetailsPage = () => {
               </CardLayout>
             )}
 
+            {/* TO show post details info */}
+
+            {!isLoading && (
+              <CardLayout>
+                <div className="row">
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div>
+                      <p>
+                        <FaCity size={50} />
+                      </p>
+                      <h6> City</h6>
+                      <p style={{ fontWeight: "bold" }}>
+                        {homeRentSinglePost?.city}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div>
+                      <p>
+                        <SiHomeadvisor size={50} />
+                      </p>
+                      <h6>Rooms</h6>
+                      <p style={{ fontWeight: "bold" }}>
+                        {homeRentSinglePost?.rooms}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div>
+                      <p>
+                        <RiMoneyEuroCircleFill size={50} />
+                      </p>
+                      <h6>Rent</h6>
+                      <p style={{ fontWeight: "bold" }}>
+                        {homeRentSinglePost?.rentAmount}.Eur
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                    <div>
+                      <p>
+                        <BiCategoryAlt size={50} />
+                      </p>
+                      <h6>Category</h6>
+                      <p style={{ fontWeight: "bold" }}>
+                        {homeRentSinglePost?.categoryBy.categoryName}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardLayout>
+            )}
+
             {/* TO show post details title and des */}
 
             {!isLoading && (
               <CardLayout>
                 <h5> {homeRentSinglePost?.title}</h5>
+                <h6>
+                  Published:
+                  {moment(homeRentSinglePost?.date).format("MMM Do YY")}
+                </h6>
+
                 <p>{homeRentSinglePost?.des}</p>
-              </CardLayout>
-            )}
-
-            {/* TO show post details info */}
-
-            {!isLoading && (
-              <CardLayout>
-                <h5> City:{homeRentSinglePost?.city}</h5>
-                <h6>Rooms:{homeRentSinglePost?.rooms}</h6>
-                <h6>Rent:{homeRentSinglePost?.rentAmount}.Eur</h6>
-                <h6>{homeRentSinglePost?.categoryBy.categoryName}</h6>
               </CardLayout>
             )}
 

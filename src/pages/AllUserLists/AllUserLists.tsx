@@ -23,6 +23,14 @@ const AllUserLists = () => {
     }
   }, [allUserLists]);
 
+  /**
+   * To add tab title for this page
+   */
+
+  useEffect(() => {
+    document.title = `All Members`;
+  }, []);
+
   return (
     <HomePageLayout>
       <div className="container">
@@ -35,7 +43,7 @@ const AllUserLists = () => {
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
               <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                 <div style={{ marginTop: "10px" }}>
-                  <SkeltonCard key={index}/>
+                  <SkeltonCard key={index} />
                 </div>
               </div>
             ))}
