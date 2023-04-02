@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Map, {
   NavigationControl,
   FullscreenControl,
   GeolocateControl,
 } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
 
 import HomePageLayout from "../../layouts/HomePageLayout";
 import { HomeRentAllPostsContext } from "../../contextapi/HomeRentAllPostsContext";
@@ -21,6 +20,14 @@ const HomeRentPostsMapView = () => {
     [3, 40],
     [16, 56],
   ];
+
+  /**
+   * To add tab title for this page
+   */
+
+  useEffect(() => {
+    document.title = `Map View`;
+  }, []);
 
   return (
     <HomePageLayout>
