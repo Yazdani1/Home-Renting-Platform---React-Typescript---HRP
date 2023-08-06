@@ -1,7 +1,9 @@
 import React, { FC, ReactNode } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+
 import modalBoxStyle from "./ModalBox.module.scss";
+import MarkerviewButton from "../Button/MarkerviewButton";
 
 interface ModalBoxProps {
   open: boolean;

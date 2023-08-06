@@ -11,13 +11,16 @@ interface IBase {
 export interface UserProfileDetailsProps extends IBase {
   name: string;
   role: string;
+  profilepic: string;
+  email: string;
+  lastlogintime: string;
 }
 
 /****************************************/
 /*********       Category          ******/
 /****************************************/
 
-export interface CategoryProps extends IBase {
+export interface Category extends IBase {
   categoryName: string;
   postedBy: UserProfileDetailsProps;
 }
@@ -40,33 +43,26 @@ export interface HomeRentPostsProps extends IBase {
   rooms: number;
   visibility: string;
   rented: boolean;
-  categoryBy: CategoryProps;
+  categoryBy: Category;
   postedBy: UserProfileDetailsProps;
   latitude: number;
   longitude: number;
 }
 
-
 /****************************************/
 /*********   Select Login Tab     ******/
 /****************************************/
 
-
 export enum SelectLogInRegistration {
-
-  LOGIN="LOGIN",
-  CREATE_ACCOUNT="CREATE_ACCOUNT"
-
+  LOGIN = "LOGIN",
+  CREATE_ACCOUNT = "CREATE_ACCOUNT",
 }
 
+/****************************************/
+/*********  Photo Library   *************/
+/****************************************/
 
-  /****************************************/
-  /*********  Photo Library   *************/
-  /****************************************/
-
-
-  export interface PhotoLibraryProps extends IBase{
-    imageurl: string,
-    postedBy: UserProfileDetailsProps
-  }
-
+export interface PhotoLibraryProps extends IBase {
+  imageurl: string;
+  postedBy: UserProfileDetailsProps;
+}

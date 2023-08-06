@@ -1,0 +1,26 @@
+.card_items {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_items > p {
+  flex: 1;
+  max-width: 150px;
+  margin: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card_items > .image_design {
+  max-width: 150px;
+}
+
+.card_items > .image_design > img {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+}

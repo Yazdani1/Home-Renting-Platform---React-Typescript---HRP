@@ -1,0 +1,48 @@
+/* CSS Module */
+
+.moreIconContainer {
+  position: relative; /* Add position relative to make the dropdown list absolute positioned relative to this container */
+}
+
+.moreIconDesign {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  p {
+    margin: 0; /* Reset margin on the <p> element */
+  }
+
+  svg {
+    margin-top: 2px; /* Adjust margin-top to center the icon vertically */
+  }
+}
+
+.dropDownList {
+    position: absolute; /* Position the dropdown list absolute relative to the icon container */
+    top: 100%; /* Position the dropdown list below the icon container */
+    right: 0; /* Position the dropdown list aligned to the right of the icon container */
+    background-color: white; /* Set the background color to white */
+    width: 100px;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a popover-like effect */
+    /* The above box-shadow property adds two shadows - one for the outer box shadow (offset by 2px in y-axis, and with a blur of 4px), and one for the inner box shadow (offset by 0px in all directions, and with a blur of 10px) */
+  
+    p {
+      cursor: pointer;
+      margin: 0;
+      padding: 4px 0;
+      font-size: 14px;
+    }
+  
+    p:hover {
+      background-color: #d0d0d0; /* Set the background color for hovered item */
+    }
+  }
+  

@@ -7,6 +7,7 @@ import { GrFormPrevious } from "react-icons/gr";
 
 import style from "./LocationMapCard.module.scss";
 import { HomeRentPostsProps } from "../../services/DataProvider";
+import MarkerviewButton from "../../components/Button/MarkerviewButton";
 
 interface LocationMapCardProps {
   home_rental_location: HomeRentPostsProps;
@@ -159,7 +160,8 @@ const LocationMapCard: FC<LocationMapCardProps> = ({
               {/* End post card */}
 
               <Link to={"/post-details/" + selectedMarker.slug}>
-                <button className="btn btn-success">View details</button>
+                {/* <button className="btn btn-success">View details</button> */}
+                <MarkerviewButton>View Details</MarkerviewButton>
               </Link>
             </Popup>
           )}

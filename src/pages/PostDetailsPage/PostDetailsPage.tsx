@@ -23,6 +23,9 @@ import { HomeRentPostsProps } from "../../services/DataProvider";
 import HomeRentPostCard from "../Home/HomeRentPostCard";
 import SkeltonCard from "../../components/Skelton/SkeltonCard";
 import SkeltonMap from "../../components/Skelton/SkeltonMap";
+import DropDownItem from "../../components/DropDown/DropDownItem";
+import ModalBox from "../../components/Modal/ModalBox";
+import { CreateWishlistProps, createWishlistPost } from "../../services/API";
 
 const PostDetailsPage = () => {
   const { slug } = useParams();
@@ -113,6 +116,47 @@ const PostDetailsPage = () => {
     document.title = `${slug}`;
   }, [slug]);
 
+  //////////////////////////////////////////////////////
+  ///////  To Report Post           ////////////////////
+  //////////////////////////////////////////////////////
+
+  // To open modal box;
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  //////////////////////////////////////////////////////
+  ///////  To Save Post to Wishlist     ////////////////
+  //////////////////////////////////////////////////////
+
+  const onSubmitCreateWishlist = async () => {
+    try {
+      const payload: CreateWishlistProps = {
+        postOwner: homeRentSinglePost?.postedBy?._id!,
+        postId: homeRentSinglePost?._id!,
+      };
+
+      const res = await createWishlistPost(payload);
+
+      if (res) {
+        toast.success("You have saved this item", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+    } catch (error: any) {
+      toast.error(error.response && error.response.data.error, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
   return (
     <HomePageLayout>
       <div className="container">
@@ -165,6 +209,26 @@ const PostDetailsPage = () => {
                 </div>
               </CardLayout>
             )}
+
+            {/* //////////////////////////////////////////////////////////////////////// */}
+            {/* ////  Post user profile and wishlist , repost section            /////// */}
+            {/* //////////////////////////////////////////////////////////////////////// */}
+
+            <CardLayout>
+              <div className={style.userInfoContainer}>
+                <DropDownItem
+                  onSaveButton={onSubmitCreateWishlist}
+                  onReportButton={handleOpenModal}
+                />
+              </div>
+              <ModalBox
+                title="Report this post"
+                open={openModal}
+                onCloseModal={handleCloseModal}
+              >
+                <h6>To repost post</h6>
+              </ModalBox>
+            </CardLayout>
 
             {/* TO show post details info */}
 
@@ -223,12 +287,12 @@ const PostDetailsPage = () => {
 
             {!isLoading && (
               <CardLayout>
+                {homeRentSinglePost?.latitude},
                 <h5> {homeRentSinglePost?.title}</h5>
                 <h6>
                   Published:
                   {moment(homeRentSinglePost?.date).format("MMM Do YY")}
                 </h6>
-
                 <p>{homeRentSinglePost?.des}</p>
               </CardLayout>
             )}

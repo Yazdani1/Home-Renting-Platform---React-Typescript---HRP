@@ -8,7 +8,7 @@ import React, {
 import { toast } from "react-toastify";
 
 import { getAllCategory } from "../services/API";
-import { CategoryProps } from "../services/DataProvider";
+import { Category } from "../services/DataProvider";
 
 export const CategoryContext = createContext<null | any>(null);
 
@@ -18,12 +18,12 @@ interface CategoryProviderProps {
 
 export const CategoryProvider: FC<CategoryProviderProps> = ({ children }) => {
     
-  const [allCategory, setAllCategory] = useState<CategoryProps[]>([]);
+  const [allCategory, setAllCategory] = useState<Category[]>([]);
 
   const loadAllCategory = async () => {
     try {
       const res = await getAllCategory();
-      setAllCategory(res.data);
+      setAllCategory(res);
     } catch (error: any) {
       toast.error(error.response && error.response.data.error, {
         position: toast.POSITION.TOP_RIGHT,

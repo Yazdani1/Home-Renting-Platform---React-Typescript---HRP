@@ -91,7 +91,7 @@ const HomeRentPostCard: FC<HomeRentPostCardProps> = ({ homerental_post }) => {
       >
         <div className={style.homeRentPostItem}>
           <p>{homerental_post.city}</p>
-          <p>{homerental_post.categoryBy.categoryName}</p>
+          <p>{homerental_post.categoryBy?.categoryName}</p>
           <p>{homerental_post.rentAmount}.EUR</p>
         </div>
       </Link>

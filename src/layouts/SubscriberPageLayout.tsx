@@ -11,11 +11,12 @@ const SubscriberPageLayout: FC<SubscriberPageLayoutProps> = ({ children }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-xl-2 col-lg-2 position-fixed">
+        {/* //position-fixed - can be sed for the sidebar to fixed the position*/}
+        <div className="col-xl-2 col-lg-2">
           <SubscriberSidebar />
         </div>
-
-        <div className="col-xl-10 col-lg-10" style={{ paddingLeft: "16.666%" }}>{children}</div>
+        {/* style={{ paddingLeft: "16.666%" }}--can be used to add padding from the left side of the sidebar */}
+        <div className="col-xl-10 col-lg-10">{children}</div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { API_URL, headerConfig } from "./Configaration";
+import {HomeRentPostsProps,VisibilityTypes,Category,UserProfileDetailsProps} from "./DataProvider"
 
 /****************************************/
 /*********  User Auth       *************/
@@ -55,7 +56,7 @@ export const searchHomeRentPosts = async (
 };
 
 /****************************************/
-/*********        sUser      ************/
+/*********        User      ************/
 /****************************************/
 
 export const getUserProfile = async (slug: string) => {
@@ -63,20 +64,30 @@ export const getUserProfile = async (slug: string) => {
   return res;
 };
 
-export const getAllUserLists = async () => {
+export const getAllUserLists = async (): Promise<UserProfileDetailsProps[]> => {
   const res = await axios.get(API_URL + "/alluser");
-  return res;
+  return res.data as UserProfileDetailsProps[];
 };
+
+export interface UpdateSingleUserProfileProps {
+  name: string; 
+  email: string;
+  profilepic: string;
+}
+
+export const updateSingleUserProfile = async(id: string,props:UpdateSingleUserProfileProps) =>{
+
+  const res = await axios.put(API_URL+"/update-single-user/"+id,{...props},headerConfig());
+  return res ;
+
+}
 
 /****************************************/
 /*********Subscriber dashboard **********/
 /****************************************/
 
 export const getLogedInUserPosts = async () => {
-  const res = await axios.get(
-    API_URL + "/get-single-user-posts",
-    headerConfig()
-  );
+  const res = await axios.get(API_URL + "/get-single-user-posts", headerConfig());
   return res;
 };
 
@@ -98,11 +109,7 @@ export interface CreatePhotoLibraryProps {
 }
 
 export const createPhotoLibrary = async (props: CreatePhotoLibraryProps) => {
-  const res = await axios.post(
-    API_URL + "/create-photo-library",
-    { ...props },
-    headerConfig()
-  );
+  const res = await axios.post(API_URL + "/create-photo-library",{ ...props },headerConfig());
   return res;
 };
 
@@ -112,10 +119,57 @@ export const getPhotoLibrary = async () => {
 };
 
 /****************************************/
+/****** Create home rental posts ********/
+/****************************************/
+
+
+export interface CreateHomeRentalPostsProps {
+
+  title: string;
+  des: string;
+  rentAmount: number;
+  photo: string[];
+  city: string;
+  rooms: number;
+  visibility: VisibilityTypes;
+  rented: boolean;
+  categoryBy: string;
+  latitude: number;
+  longitude: number;
+
+}
+
+export const createHomeRentalPosts = async(props:CreateHomeRentalPostsProps): Promise<HomeRentPostsProps> =>{
+
+  const res = await axios.post(API_URL+"/create-homerent-post",{...props},headerConfig());
+  return res.data;
+
+}
+
+
+
+/****************************************/
 /*********  Category       *************/
 /****************************************/
 
-export const getAllCategory = async () => {
+export const getAllCategory = async (): Promise<Category[]> => {
   const res = await axios.get(API_URL + "/get-all-category");
-  return res;
+  return res.data as Category[];
 };
+
+
+
+/****************************************/
+/****** Wishlist - To save post *********/
+/****************************************/
+
+export interface CreateWishlistProps {
+  postOwner: string;
+  postId: string;
+}
+
+export const createWishlistPost = async(props:CreateWishlistProps)=>{
+  const res = await axios.post(API_URL+"/create-wishlist-post",{...props},headerConfig());
+  return res
+
+}

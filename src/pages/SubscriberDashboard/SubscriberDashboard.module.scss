@@ -1,0 +1,33 @@
+.header_row_items {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.header_row_items > p {
+  flex: 1;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 5px;
+  text-overflow: ellipsis;
+  font-weight: bolder;
+  align-items: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.city_room_raw {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+}
+
+.lat_long_row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

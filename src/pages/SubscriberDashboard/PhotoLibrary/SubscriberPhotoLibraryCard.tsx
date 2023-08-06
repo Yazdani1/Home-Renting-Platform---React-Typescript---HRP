@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { PhotoLibraryProps } from "../../services/DataProvider";
+import { PhotoLibraryProps } from "../../../services/DataProvider";
 import style from "./SubscriberPhotoLibrary.module.scss";
 
 interface SubscriberPhotoLibraryCardProps {

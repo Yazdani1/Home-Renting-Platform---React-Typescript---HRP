@@ -19,6 +19,7 @@ interface HomeRentAllPostsContextProviderProps {
 export const HomeRentAllPostsProvider: FC<
   HomeRentAllPostsContextProviderProps
 > = ({ children }) => {
+  
   const [allHomeRentPosts, setAllHomeRentPosts] = useState<
     HomeRentPostsProps[]
   >([]);

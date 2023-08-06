@@ -1,48 +1,111 @@
 import React, { useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
-import { UserContext } from "../../contextapi/UserContext";
 import style from "./SubscriberSidebar.module.scss";
+import { useUserContext } from "../../contextapi/UserContextCookies";
 
 const SubscriberSidebar = () => {
   let navigate = useNavigate();
-  const [state, setState] = useContext(UserContext);
+
+  // Context api cookies
+  const { user, logout } = useUserContext();
 
   // To logout
 
   const logOut = () => {
-    window.localStorage.removeItem("tokenLogin");
+    logout();
     window.localStorage.removeItem("token");
     navigate("/");
-    setState("");
   };
 
   return (
     <div className={style.subscriberSidebar}>
       <div className={style.sideBarList}>
         <ul>
+          <div className={style.profileContainer}>
+            {user?.profilepic ? (
+              <div className={style.profilePicture}>
+                <img src={user?.profilepic} alt="Profile" />
+              </div>
+            ) : (
+              <div className={style.profilePictureAvatar}>
+                <CgProfile size={80} />
+              </div>
+            )}
+          </div>
+          <li className={style.username}>{user?.name}</li>
+          <hr />
+
           <li>
-            <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            <NavLink
+              to={"/"}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: "white",
+                      textDecoration: "none",
+                      borderBottom: "3px solid yellow",
+                    }
+                  : { color: "white", textDecoration: "none" }
+              }
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
+
           <li>
-            <Link
+            <NavLink
               to={"/dashboard"}
-              style={{ textDecoration: "none", color: "white" }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: "white",
+                      textDecoration: "none",
+                      borderBottom: "3px solid yellow",
+                    }
+                  : { color: "white", textDecoration: "none" }
+              }
             >
               Dashboard
-            </Link>
+            </NavLink>
           </li>
+
           <li>
-            <Link
+            <NavLink
               to={"/photo-library"}
-              style={{ textDecoration: "none", color: "white" }}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: "white",
+                      textDecoration: "none",
+                      borderBottom: "3px solid yellow",
+                      marginTop: "5px",
+                    }
+                  : { color: "white", textDecoration: "none" }
+              }
             >
               Photo Library
-            </Link>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/profile"}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: "white",
+                      textDecoration: "none",
+                      borderBottom: "3px solid yellow",
+                    }
+                  : { color: "white", textDecoration: "none" }
+              }
+            >
+              Profile
+            </NavLink>
           </li>
         </ul>
+
         <span className={style.logoutButton} onClick={logOut}>
           Log Out
         </span>

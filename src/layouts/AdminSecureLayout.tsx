@@ -1,8 +1,7 @@
-import { useContext, ReactNode, FC, useEffect } from "react";
+import { ReactNode, FC, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
-import { UserContext } from "../contextapi/UserContext";
 import { getUserRoleForAdmin } from "../services/API";
 
 interface AdminSecureLayoutProps {
@@ -13,8 +12,6 @@ const AdminSecureLayout: FC<AdminSecureLayoutProps> = ({ children }) => {
   let location = useLocation();
   let navigate = useNavigate();
 
-  const [userstate, setState] = useContext(UserContext);
-
   /**
    * This function will check admin role. If role is admin then admin page will be accessible
    *  else it will send to the home page
@@ -22,20 +19,22 @@ const AdminSecureLayout: FC<AdminSecureLayoutProps> = ({ children }) => {
   const loadCurrentUserAdminRole = async () => {
     try {
       const res = await getUserRoleForAdmin();
-    } catch (error:any) {
+    } catch (error: any) {
       navigate("/");
 
       toast.error(error.response && error.response.data.error, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.TOP_CENTER,
       });
     }
   };
 
   useEffect(() => {
-    if (userstate && userstate.token) loadCurrentUserAdminRole();
-  }, [userstate && userstate.token]);
+    loadCurrentUserAdminRole();
+  }, []);
 
-  return userstate?.user ? (
+  const tokenData = localStorage.getItem("token");
+
+  return tokenData ? (
     <> {children}</>
   ) : (
     <Navigate to="/" replace state={{ from: location }} />

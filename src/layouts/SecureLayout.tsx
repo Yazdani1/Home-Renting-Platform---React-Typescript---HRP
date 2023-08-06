@@ -1,5 +1,4 @@
-import { useContext, ReactNode, FC } from "react";
-import { UserContext } from "../contextapi/UserContext";
+import { ReactNode, FC } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 interface IProposSecureLayout {
@@ -9,13 +8,14 @@ interface IProposSecureLayout {
 const SecureLayout: FC<IProposSecureLayout> = ({ children }) => {
   let location = useLocation();
 
-  const [userstate, setState] = useContext(UserContext);
+  const tokenData = localStorage.getItem("token");
 
-  return userstate?.user ? (
+  return tokenData ? (
     <> {children}</>
   ) : (
     <Navigate to="/" replace state={{ from: location }} />
   );
+
 };
 
 export default SecureLayout;

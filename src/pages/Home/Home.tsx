@@ -9,7 +9,7 @@ import { CategoryContext } from "../../contextapi/CategoryContext";
 
 import { searchHomeRentPosts, getAllHomeRentPosts } from "../../services/API";
 import CardLayout from "../../components/CardLayout/CardLayout";
-import { HomeRentPostsProps, CategoryProps } from "../../services/DataProvider";
+import { HomeRentPostsProps, Category} from "../../services/DataProvider";
 import SkeltonMap from "../../components/Skelton/SkeltonMap";
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
   // context api
 
   const allHomeRentPosts = useContext(HomeRentAllPostsContext);
-  const allCategory = useContext<CategoryProps[]>(CategoryContext);
+  const allCategory = useContext<Category[]>(CategoryContext);
 
   /****************************************/
   /*********Search Posts       ************/
@@ -80,7 +80,7 @@ const Home = () => {
   // To show the search result without button click need to use useEffect
 
   useEffect(() => {
-    searhPosts();
+    // searhPosts();
   }, [min, max, rooms]);
 
   // To show the loading skelton if data is not loaded yet

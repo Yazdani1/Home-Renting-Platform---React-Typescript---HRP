@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-import SubscriberPageLayout from "../../layouts/SubscriberPageLayout";
+import SubscriberPageLayout from "../../../layouts/SubscriberPageLayout";
 import {
   CreatePhotoLibraryProps,
   createPhotoLibrary,
   getPhotoLibrary,
-} from "../../services/API";
+} from "../../../services/API";
 import style from "./SubscriberPhotoLibrary.module.scss";
-import CardLayout from "../../components/CardLayout/CardLayout";
-import { PhotoLibraryProps } from "../../services/DataProvider";
+import CardLayout from "../../../components/CardLayout/CardLayout";
+import { PhotoLibraryProps } from "../../../services/DataProvider";
 
 import SubscriberPhotoLibraryCard from "./SubscriberPhotoLibraryCard";
 

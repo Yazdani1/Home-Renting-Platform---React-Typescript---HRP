@@ -1,14 +1,17 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import style from "./LogIn.module.scss";
 import { UserLoginProps, createUserLogin } from "../../services/API";
-import { UserContext } from "../../contextapi/UserContext";
+import { useUserContext } from "../../contextapi/UserContextCookies";
 
 const LogIn = () => {
   let navigate = useNavigate();
-  const [state, setState] = useContext(UserContext);
+
+  //Context api cookies and encrypted
+
+  const {  setUser } = useUserContext();
 
   /****************************************/
   /*********  Log In **********************/
@@ -31,21 +34,16 @@ const LogIn = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
 
-        // save user info in local storage
-        localStorage.setItem("tokenLogin", JSON.stringify(res.data));
+        //Token for protected route that is required for server api response and protected route
         window.localStorage.setItem("token", res.data.token);
-
-        // update user information to context api
-        setState({
-          user: res.data.user,
-          token: res.data.token,
-        });
+        
+        // Context api - to store user details after logedin - cookies and encrypted
+        setUser(res.data.user);
 
         setEmail("");
         setPassword("");
 
         // Send user to the dashboard based on the user role
-
         if (res.data.user?.role === "Admin") {
           navigate("/admin-dashboard");
         } else {

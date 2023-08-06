@@ -1,0 +1,15 @@
+.btnDesign {
+    background-color: yellow;
+    color: black;
+    height: 30px;
+    width: fit-content;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  /* Remove the focus outline */
+  .btnDesign:focus {
+    outline: none !important;
+  }
+  

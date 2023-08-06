@@ -12,11 +12,11 @@ import { UserProfileDetailsProps } from "../services/DataProvider";
 
 export const AllUserContext = createContext<null | any>(null);
 
-interface AllUserListsContextProps {
+interface AllUserListsProviderProps {
   children: ReactNode;
 }
 
-export const AllUserListsProvider: FC<AllUserListsContextProps> = ({
+export const AllUserListsProvider: FC<AllUserListsProviderProps> = ({
   children,
 }) => {
   /****************************************/
@@ -30,7 +30,7 @@ export const AllUserListsProvider: FC<AllUserListsContextProps> = ({
   const loadAllUserPosts = async () => {
     try {
       const res = await getAllUserLists();
-      setAllUserLists(res.data);
+      setAllUserLists(res);
     } catch (error: any) {
       toast.error(error.response && error.response.data.error, {
         position: toast.POSITION.TOP_RIGHT,

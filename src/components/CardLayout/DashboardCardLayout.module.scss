@@ -1,15 +1,15 @@
-.cardContainer {
+.card_design {
   border-radius: 5px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 5px;
-  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
 
-  .card_header_row{
+  .card_header_row {
     display: flex;
     align-items: center;
     padding-top: 5px;
-    p{
+    p {
       font-weight: bolder;
       cursor: pointer;
     }

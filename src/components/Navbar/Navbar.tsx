@@ -6,10 +6,12 @@ import ModalBox from "../Modal/ModalBox";
 import { SelectLogInRegistration } from "../../services/DataProvider";
 import LogIn from "../../pages/Auth/LogIn";
 import Registration from "../../pages/Auth/Registration";
-import { UserContext } from "../../contextapi/UserContext";
+import {useUserContext} from "../../contextapi/UserContextCookies"
 
 const Navbar = () => {
-  const [userDetails] = useContext(UserContext);
+
+  // Context api cookies
+  const {user,setUser} = useUserContext();
 
   /****************************************/
   /***** Login and Registration Tab  ******/
@@ -42,6 +44,11 @@ const Navbar = () => {
     <nav className={style.navbarContainer}>
       <span className={style.siteTitle}>Home Rental Platform</span>
       <ul>
+      <li className="nav-item">
+          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+            {user?.name}
+          </Link>
+        </li>
         <li className="nav-item">
           <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
             Home
@@ -83,7 +90,7 @@ const Navbar = () => {
           </Link>
         </li> */}
 
-        {userDetails?.user ? (
+        {user ? (
           <li className="nav-item">
             <Link
               to={"/dashboard"}
