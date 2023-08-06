@@ -234,9 +234,8 @@ const SubscriberDashboard = () => {
           </ModalBox>
         </DashboardCardLayout>
 
-        <DashboardCardLayout>
           <HomeRentalPostsListRow />
-        </DashboardCardLayout>
+   
         {/* To show all the posts */}
 
         {userAllHomeRentPosts &&
@@ -262,6 +261,8 @@ const HomeRentalPostsListRow = () => {
       <p>Rooms</p>
       <p>Visibility</p>
       <p>Published on</p>
+      <p>Action</p>
+
     </div>
   );
 };
