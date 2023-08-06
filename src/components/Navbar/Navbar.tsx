@@ -1,17 +1,17 @@
-import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 import style from "./Navbar.module.scss";
 import ModalBox from "../Modal/ModalBox";
 import { SelectLogInRegistration } from "../../services/DataProvider";
 import LogIn from "../../pages/Auth/LogIn";
 import Registration from "../../pages/Auth/Registration";
-import {useUserContext} from "../../contextapi/UserContextCookies"
+import { useUserContext } from "../../contextapi/UserContextCookies";
 
 const Navbar = () => {
-
+  
   // Context api cookies
-  const {user,setUser} = useUserContext();
+  const { user, setUser } = useUserContext();
 
   /****************************************/
   /***** Login and Registration Tab  ******/
@@ -44,51 +44,74 @@ const Navbar = () => {
     <nav className={style.navbarContainer}>
       <span className={style.siteTitle}>Home Rental Platform</span>
       <ul>
-      <li className="nav-item">
-          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            {user?.name}
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
-            Home
-          </Link>
-        </li>
+        <li className="nav-item">{user?.name}</li>
 
-        <li className="nav-item">
-          <Link
+        <li>
+          <NavLink
+            to={"/"}
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    color: "white",
+                    textDecoration: "none",
+                    borderBottom: "3px solid yellow",
+                  }
+                : { color: "white", textDecoration: "none" }
+            }
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to={"/listview"}
-            style={{ textDecoration: "none", color: "white" }}
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    color: "white",
+                    textDecoration: "none",
+                    borderBottom: "3px solid yellow",
+                  }
+                : { color: "white", textDecoration: "none" }
+            }
           >
             List View
-          </Link>
+          </NavLink>
         </li>
 
-        <li className="nav-item">
-          <Link
+        <li>
+          <NavLink
             to={"/mapview"}
-            style={{ textDecoration: "none", color: "white" }}
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    color: "white",
+                    textDecoration: "none",
+                    borderBottom: "3px solid yellow",
+                  }
+                : { color: "white", textDecoration: "none" }
+            }
           >
             Mapview
-          </Link>
+          </NavLink>
         </li>
 
-        <li className="nav-item">
-          <Link
+        <li>
+          <NavLink
             to={"/alluser-lists"}
-            style={{ textDecoration: "none", color: "white" }}
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    color: "white",
+                    textDecoration: "none",
+                    borderBottom: "3px solid yellow",
+                  }
+                : { color: "white", textDecoration: "none" }
+            }
           >
             Members
-          </Link>
+          </NavLink>
         </li>
-        {/* <li className="nav-item">
-          <Link
-            to={"/about"}
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            About
-          </Link>
-        </li> */}
 
         {user ? (
           <li className="nav-item">

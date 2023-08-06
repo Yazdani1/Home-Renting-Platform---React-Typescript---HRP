@@ -13,7 +13,7 @@ const SubscriberSidebar = () => {
 
   // To logout
 
-  const logOut = () => {
+  const subscriberLogOut = () => {
     logout();
     window.localStorage.removeItem("token");
     navigate("/");
@@ -106,7 +106,7 @@ const SubscriberSidebar = () => {
           </li>
         </ul>
 
-        <span className={style.logoutButton} onClick={logOut}>
+        <span className={style.logoutButton} onClick={subscriberLogOut}>
           Log Out
         </span>
       </div>

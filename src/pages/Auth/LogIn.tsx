@@ -34,7 +34,8 @@ const LogIn = () => {
           position: toast.POSITION.TOP_RIGHT,
         });
 
-        //Token for protected route that is required for server api response and protected route
+        //Token for api protected route that is required for server api response
+        // Protected route for frontend route
         window.localStorage.setItem("token", res.data.token);
         
         // Context api - to store user details after logedin - cookies and encrypted
