@@ -9,11 +9,10 @@
 .header_row_items > p {
   flex: 1;
   max-width: 150px;
-  margin: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  // font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .city_room_raw {
